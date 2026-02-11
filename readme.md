@@ -23,11 +23,26 @@ sudo mv ./bin/syft /usr/local/bin/
 syft version
 ```
 ```
-```
 syft insecure-image:latest
 ```
 ```
 syft insecure-image:latest -o json > sbom.json
 syft insecure-image:latest -o table
+```
+TRIVY
+```
+sudo apt update
+sudo apt install wget apt-transport-https gnupg lsb-release -y
+
+wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo apt-key add -
+
+echo deb https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main | sudo tee -a /etc/apt/sources.list.d/trivy.list
+
+sudo apt update
+sudo apt install trivy -y
+
+```
+```
+trivy image insecure-image
 ```
 
