@@ -1,10 +1,5 @@
-FROM python:3.11 AS builder
+FROM python:latest
 WORKDIR /app
-COPY requirements.txt .
-RUN pip install --prefix=/install -r requirements.txt
-
-FROM python:3.11-slim
-WORKDIR /app
-COPY --from=builder /install /usr/local
-COPY app/ /app/
+COPY . .
+RUN pip install -r requirements.txt
 CMD ["python", "app/app.py"]
