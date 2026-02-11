@@ -22,3 +22,12 @@ sudo mv ./bin/syft /usr/local/bin/
 ```
 syft version
 ```
+```
+```
+syft insecure-image:latest
+```
+```
+syft insecure-image:latest -o json > sbom.json
+syft insecure-image:latest -o table
+```
+
