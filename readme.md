@@ -1,48 +1,90 @@
-```
-docker buildx create --use --driver docker-container
+# Dagger Agentic Workflow Exercises
 
-docker buildx inspect --bootstrap
+## Prerequisites
 
-docker buildx build --platform linux/amd64,linux/arm64 -t yourname/app:latest --push .
-```
-Docker build
-```
-docker build -t insecure-image .
-```
+1. Ubuntu (WSL recommended)
+2. Docker Desktop with WSL integration enabled
+3. Python 3.11
+4. Dagger CLI installed
+5. Python virtual environment activated
 
+---
 
-Syft SBOM
+## Setup
 
-```
-curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh
-```
-```
-sudo mv ./bin/syft /usr/local/bin/
-```
-```
-syft version
-```
-```
-syft insecure-image:latest
-```
-```
-syft insecure-image:latest -o json > sbom.json
-syft insecure-image:latest -o table
-```
-TRIVY
-```
-sudo apt update
-sudo apt install wget apt-transport-https gnupg lsb-release -y
-
-wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo apt-key add -
-
-echo deb https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main | sudo tee -a /etc/apt/sources.list.d/trivy.list
-
-sudo apt update
-sudo apt install trivy -y
-
-```
-```
-trivy image insecure-image
+```bash
+python3.11 -m venv venv
+source venv/bin/activate
+pip install --upgrade pip
+pip install dagger-io
 ```
 
+Verify:
+
+```bash
+docker version
+dagger version
+```
+
+---
+
+# Exercise 1 – Simple Container Execution
+
+Run:
+
+```bash
+python exercise1.py
+```
+
+Expected Output:
+Hello from Dagger Exercise 1
+
+---
+
+# Exercise 2 – Mount Local Directory
+
+Demonstrates mounting host directory into container.
+
+Run:
+
+```bash
+python exercise2.py
+```
+
+---
+
+# Exercise 3 – Multi-Step Workflow (DAG Concept)
+
+Demonstrates container chaining and workflow composition.
+
+Run:
+
+```bash
+python exercise3.py
+```
+
+---
+
+# Exercise 4 – Simulated Agentic Workflow
+
+Simulates AI generating code and Dagger executing it safely.
+
+Run:
+
+```bash
+python exercise4.py
+```
+
+---
+
+## Learning Objectives
+
+- Understand Workflows as Code
+- Run ephemeral containers
+- Mount host directories
+- Compose multi-step pipelines
+- Execute AI-generated code safely
+
+---
+
+You're now ready to integrate Dagger with real Agentic AI systems like LangGraph or CrewAI.
